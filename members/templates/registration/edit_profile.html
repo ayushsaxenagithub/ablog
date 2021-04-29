@@ -1,0 +1,25 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM Edit Profile
+  {% endblock %}
+
+    {% block content %}
+
+<h1>Edit Profile .....</h1>
+
+  {% if user.profile.bio %}
+  <br/>
+  <br/>
+  {{user.profile.bio}}
+  <br/>
+  <br/>
+  {% endif %}
+  <div class="form-label" >
+  <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button class="btn btn-secondary">Update</button>
+  </form>
+      </div>
+    {% endblock %}

@@ -1,0 +1,23 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  Comment on blog Post
+  {% endblock %}
+
+    {% block content %}
+        {% if user.is_authenticated %}
+<h1>Add Comment .....</h1>
+  <div class="form-label" >
+  <form method="post">
+      {% csrf_token %}
+      {{form.media}}
+      {{form.as_p}}
+      <small><button class="btn btn-secondary">Add Comment</button></small>
+  </form>
+      </div>
+  {% endif %}
+    <script>
+      var a = "{{user.first_name}}"+"{{user.last_name}}";
+      document.getElementById("name").value=a;
+  </script>
+    {% endblock %}

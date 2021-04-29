@@ -1,0 +1,26 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM Update Post
+  {% endblock %}
+
+    {% block content %}
+        {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+<h1>Update Post .....</h1>
+  <div class="form-control" enctype="multipart/form-data">
+  <form method="post">
+      {% csrf_token %}
+      {{form.media}}
+      {{form.as_p}}
+      <button class="btn btn-secondary">Update</button>
+  </form>
+      </div>
+          {% else %}
+            <p>Sorry Something went wrong</p>
+       {% endif%}
+  {% else %}
+  <h3>You are not logged in</h3>
+
+  {% endif %}
+    {% endblock %}

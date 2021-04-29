@@ -1,0 +1,21 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM Delete Post
+  {% endblock %}
+
+    {% block content %}
+    {% if user.is_authenticated %}
+        <h3>Delete {{post.title}}.</h3>
+          <div class="form-label" >
+          <form method="post">
+              {% csrf_token %}
+              {{form.as_p}}
+              <strong>Are you Sure?</strong>
+              <button class="btn btn-secondary">Delete</button>
+          </form>
+              </div>
+    {% else %}
+        <h2>You are not logged in </h2>
+    {% endif %}
+    {% endblock %}

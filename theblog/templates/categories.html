@@ -1,0 +1,29 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM {{ctv}} Post
+  {% endblock %}
+
+    {% block content %}
+  {% if category_post %}
+<h1>  {{ctv}}</h1>
+  <ul>
+{% for post in category_post %}
+        <li><a href="{% url 'article-detail' post.pk %}" class="badge bg-secondary">{{post.title}}</a>
+            -{{post.author.first_name}}
+            {{post.author.last_name}}<br>
+            {{post.author.email}}--
+            {{post.post_date}}-<br>
+            {{post.body|slice:":200"|safe}}
+            {% if user.is_authenticated %}
+                <small>(<a href="{% url 'update_post' post.pk %}">Edit</a>)</small>
+                <small>(<a href="{% url 'delete_post' post.pk %}">Delete</a>)</small>
+            {% endif %}
+        </li>
+{% endfor %}
+      </ul>
+  {% else %}
+  <p>The Category you are looking for doesn't Exist</p>
+  {% endif %}
+
+    {% endblock %}

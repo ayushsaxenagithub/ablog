@@ -1,0 +1,10 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM {{post.author.first_name}} Profile
+  {% endblock %}
+
+    {% block content %}
+<h3>{{post.author.first_name}} {{post.author.last_name}} Profile</h3>
+  {{page_user}}
+    {% endblock %}

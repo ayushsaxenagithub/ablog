@@ -1,0 +1,67 @@
+  {% extends 'base.html'%}
+{% load static %}
+    {% block title%}
+  {{post.author.first_name}} MOASM
+  {% endblock %}
+
+    {% block content %}
+<h3>{{post.author.first_name}} Profile</h3>
+
+
+    <!-- from safe key it's not escape the html tag in detail view which we were edited in Create post -->
+
+  <br><br>
+  <div class="card mb-3" style="max-width: 800px;" >
+  <div class="row g-2">
+    <div class="col-md-4">
+        {% if post.author.profile.profile_pic %}
+      <img src="{{post.author.profile.profile_pic.url}}" alt="{{post.author.first_name}} image"
+           title="{{post.author.first_name}} {{post.author.last_name}}" height="250" width="250" >
+        {% else %}
+         <img src="{% static 'theblog/images/download.png' %}" alt="Default image"
+           title="Default Image" height="250" width="250" >
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{post.author.first_name}} {{post.author.last_name}}</h3>
+          <p class="small text-muted">
+              <a href="{% url 'show_profile' post.pk %}">Profile </a>|
+              {% if post.author.profile.website_url %}
+              <a href="{{post.author.profile.website_url}}" target="_blank"> Website</a> |
+              {% endif %}
+              {% if post.author.profile.fb_url %}
+              <a href="{{post.author.profile.fb_url}}" target="_blank">Facebook</a> |
+              {% endif %}
+              {% if post.author.profile.linkedin_url %}
+              <a href="{{post.author.profile.linkedin_url}}" target="_blank">Linkedin</a> |
+              {% endif %}
+              {% if post.author.profile.twitter_url %}
+              <a href="{{post.author.profile.twitter_url}}" target="_blank">Twitter</a> |
+              {% endif %}
+              {% if post.author.profile.instagram_url %}
+              <a href="{{post.author.profile.instagram_url}}" target="_blank">Instagram</a> |
+              {% endif %}
+              {% if post.author.profile.pinterest_url %}
+              <a href="{{post.author.profile.pinterest_url}}" target="_blank">Pinterest</a>|
+              {% endif %}
+              <a href="mailto:{{post.author.email}}?subject=About%20Post%20{{post.title}}, ">Email</a></p>
+        <p class="card-text">{{post.author.profile.bio}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+
+
+
+<!--  <br/><br/>
+  <hr>
+  <br/>
+  <form action="{% url 'like_post' post.pk%}" method="post">
+      {% csrf_token %}
+      <button type="submit", name="post_id", value="{{post.id}}",class="btn btn-primarybtn-sm">Like</button>
+  </form>-->
+
+    {% endblock %}

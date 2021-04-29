@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Professional profile</title>
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'theblog/css/show_profile.css' %}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	<div class="profile-main">
+		<div class="profile-header">
+			<div class="user-detail">
+				<div class="user-image">
+        {% if post.author.profile.profile_pic %}
+      <img src="{{post.author.profile.profile_pic.url}}" alt="{{post.author.first_name}} image"
+           title="{{post.author.first_name}} {{post.author.last_name}}" >
+        {% else %}
+         <img src="{% static 'theblog/images/download.png' %}" alt="Default image"
+           title="Default Image"  >
+        {% endif %}
+				</div>
+				<div class="user-data">
+					<h2>{{post.author.first_name}} {{post.author.last_name}}</h2>
+					<span class="post-label">Admin</span>
+					<span class="post-label">Speaker</span>
+					<span class="post-label">AMA</span>
+					<p>Founder and CEO at <strong>NewSpot</strong><br>
+					<i class="fa fa-map-marker" aria-hidden="true"></i>  Boston, MA, United States
+					</p>
+				</div>
+				<div class="social-icons">
+                    {% if post.author.profile.fb_url %}
+					<a href="{{post.author.profile.fb_url}}" target="_blank"><i class="fa fa-facebook"></i></a>
+                    {% endif %}
+                    {% if post.author.profile.twitter_url %}
+					<a href="{{post.author.profile.twitter_url}}" target="_blank"><i class="fa fa-twitter"></i></a>
+                    {% endif %}
+                    {% if post.author.profile.linkedin_url %}
+					<a href="{{post.author.profile.linkedin_url}}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    {% endif %}
+                    {% if post.author.profile.website_url %}
+                    <a href="{{post.author.profile.website_url}}" target="_blank"><i class="fa fa-google"></i></a>
+                    {% endif %}
+                    {% if post.author.profile.instagram_url %}
+					<a href="{{post.author.profile.instagram_url}}" target="_blank"><i class="fa fa-instagram"></i></a>
+                    {% endif %}
+                    {% if post.author.profile.pinterest_url %}
+                    <a href="{{post.author.profile.pinterest_url}}" target="_blank"><i class="fa fa-pinterest"></i></a>
+                    {% endif %}
+                     <br/>
+					<a href="mailto:{{post.author.email}}?subject=About%20Post%20{{post.title}}," type="button" class="msg-btn"><i class="fa fa-envelope-o" aria-hidden="true"></i>Send Message</a>
+				</div>
+			</div>
+
+			<div class="tab-panel-main">
+				<ul class="tabs">
+					<li class="tab-link current" data-tab="Basic-detail">Basic Detail</li>
+					<li class="tab-link" data-tab="Edu-detail">Educational Detail</li>
+					<li class="tab-link" data-tab="Portfolio">Portfolio</li>
+				</ul>
+				<div id="Basic-detail" class="tab-content current">
+					<div class="skill-box">
+					  <ul>
+						<li><strong>My Core Skills:</strong></li>
+						<li>INBOUND MARKETING<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li>ENTERPRENEURSHIP<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></li>
+						<li>GROWTH MARKETING<i class="fa fa-star" aria-hidden="true"></i></li>
+					  </ul>		
+					</div>
+					<div class="bio-box">
+						<div class="heading">
+							<p>Professional Bio</p>
+						</div>
+						<div class="desc">
+                            {{post.author.profile.bio}}
+						</div>
+					</div>
+					<div class="detail-box">
+						<p>Detail</p>
+						<ul class="ul-first">
+							<li>Birth date</li>
+							<li>City</li>
+							<li>Country</li>
+							<li>Contact No</li>
+						</ul>
+						<ul class="ul-second">
+							<li>8 March 1997</li>
+							<li>Jamanagar</li>
+							<li>California</li>
+							<li>9900990087</li>
+						</ul>
+					</div>
+				</div>
+				<div id="Edu-detail" class="tab-content">
+					<div class="Edu-box-main">
+						 <h2><i class="fa fa-graduation-cap" aria-hidden="true"></i> Education</h2>
+						 <div class="Edu-box">
+						 	<h5><span>Graphic designer</span> <br>
+						 		2005 - 2007 | Infoway Corporation</h5>
+						 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						 </div>
+						 <div class="Edu-box">
+						 	<h5><span>Web designer</span> <br>
+						 		2007 - 2009 | Light Corporation</h5>
+						 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						 </div>
+					</div>
+				</div>
+				<div id="Portfolio" class="tab-content">
+					<div class="portfolio-box">
+						<div class="portfolio-img-box">
+							<h3>Web Design</h3>
+							<img src="http://nicesnippets.com/demo/up-web-design.jpg">
+						</div>
+						<div class="portfolio-img-box">
+							<h3>Web development</h3>
+							<img src="http://nicesnippets.com/demo/up-web-development.png">
+						</div>
+						<div class="portfolio-img-box">
+							<h3>SEO</h3>
+							<img src="http://nicesnippets.com/demo/up-seo.jpg">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="footer">
+			<p><strong>My Badges</strong></p><br>
+            {% if post.author.profile.fb_url %}
+            <div class="footer-box"><a href="{{post.author.profile.fb_url}}" target="_blank"><i class="fa fa-facebook">
+            </i></a></div>
+                    {% endif %}
+                    {% if post.author.profile.twitter_url %}
+            <div class="footer-box"><a href="{{post.author.profile.twitter_url}}" target="_blank"><i class="fa fa-twitter">
+            </i></a></div>
+                    {% endif %}
+                    {% if post.author.profile.linkedin_url %}
+            <div class="footer-box"><a href="{{post.author.profile.linkedin_url}}" target="_blank"><i class="fa fa-linkedin">
+            </i></a></div>
+                    {% endif %}
+                    {% if post.author.profile.website_url %}
+            <div class="footer-box"><a href="{{post.author.profile.website_url}}" target="_blank"><i class="fa fa-google">
+            </i></a></div>
+                    {% endif %}
+                    {% if post.author.profile.instagram_url %}
+			<div class="footer-box"><a href="{{post.author.profile.instagram_url}}" target="_blank"><i class="fa fa-instagram">
+            </i></a></div>
+                    {% endif %}
+                    {% if post.author.profile.pinterest_url %}
+            <div class="footer-box"> <a href="{{post.author.profile.pinterest_url}}" target="_blank"><i class="fa fa-pinterest"></i></a></div>
+                    {% endif %}
+		</div>
+	</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('ul.tabs li').click(function(){
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#"+tab_id).addClass('current');
+		});
+	});
+</script>
+</body>
+
+</html>

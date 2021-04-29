@@ -1,0 +1,30 @@
+  {% extends 'base.html'%}
+
+  {% block title%}
+  MOASM Home
+  {% endblock %}
+
+    {% block content %}
+<h1>Post</h1>
+<ul>
+    {% for post in object_list %}
+        <li><a href="{% url 'article-detail' post.pk %}" class="badge bg-secondary">{{post.title}}</a>
+          <a href="{% url 'category' post.category %}">  {{post.category}} </a>
+            {{post.title_tag}}<br>
+            By : <a href="{% url 'show_profile' post.pk %}">{{post.author.first_name}}
+                {{post.author.last_name}}</a><br>
+            {{post.snippet}}--
+            {{post.post_date}}-<br>
+           <!-- {{post.body|slice:":200"|safe}}-->
+            {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <small>(<a href="{% url 'update_post' post.pk %}">Edit</a>)</small>
+                <small>(<a href="{% url 'delete_post' post.pk %}">Delete</a>)</small>
+                    {% else %}
+            <p>Sorry Something went wrong</p>
+            {% endif%}
+            {% endif %}
+        </li>
+    {% endfor%}
+</ul>
+    {% endblock %}
